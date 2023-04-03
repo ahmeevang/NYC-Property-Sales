@@ -61,7 +61,7 @@ SELECT *, strftime('%m', sale_date) AS month
 FROM property_sales
 )
 
-SELECT
+SELECT property_sales.borough,
     CASE
         WHEN month = '01' THEN 'January'
         WHEN month = '02' THEN 'February'
@@ -93,7 +93,7 @@ COUNT(CASE
 FROM month_CTE
 JOIN property_sales
     ON month_CTE.id = property_sales.id
-GROUP BY month_sold
+GROUP BY month_sold, property_sales.borough
 ORDER BY month;
 
 
